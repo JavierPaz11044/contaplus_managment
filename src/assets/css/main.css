@@ -1,0 +1,18 @@
+
+@theme {
+    --color-primary: #570C07;
+    --color-secondary: #99494E;
+    --color-warning: #f9c018;
+    --color-classic: #2C2C2C;
+    --color-background: #bfb8b9;
+    --color-apolloBackground: #2b2a2a;
+    --color-apolloText: #AAAAAA;
+    --color-dropDownOptionText: #737373;
+  }
+  
+
+
+  
+  @import "tailwindcss";
+@import "@formkit/themes/genesis";
+  
