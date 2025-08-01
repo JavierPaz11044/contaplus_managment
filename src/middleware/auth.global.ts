@@ -1,5 +1,8 @@
 export default defineNuxtRouteMiddleware((to, _from) => {
   // Skip middleware for API routes
+  if (to.path.startsWith("/img")) {
+    return;
+  }
   if (to.path.startsWith("/api/")) {
     return;
   }

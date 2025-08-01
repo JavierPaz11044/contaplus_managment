@@ -8,20 +8,11 @@
         <div
           class="mx-auto h-20 w-20 bg-gradient-to-r from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg mb-6"
         >
-          <svg
-            class="h-12 w-12 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-            ></path>
-          </svg>
+          <img
+            src="/assets/img/logo.jpeg"
+            alt="ContaPlus Logo"
+            class="w-20 h-20 rounded-lg shadow-sm"
+          />
         </div>
         <h1 class="text-4xl font-bold text-blue-900 mb-2">ContaPlus</h1>
         <p class="text-blue-600 text-sm font-medium">

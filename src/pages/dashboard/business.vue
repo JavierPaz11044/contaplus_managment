@@ -3,10 +3,19 @@
     <div class="p-6">
       <!-- Header -->
       <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">Mi Negocio</h1>
-        <p class="text-gray-600">
-          Información de tu empresa y código QR para acceso rápido
-        </p>
+        <div class="flex items-center mb-4">
+          <img
+            src="/assets/img/logo.jpeg"
+            alt="ContaPlus Logo"
+            class="w-12 h-12 mr-4 rounded-lg shadow-sm"
+          />
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900">Mi Negocio</h1>
+            <p class="text-gray-600">
+              Información de tu empresa y código QR para acceso rápido
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -374,7 +383,7 @@ const printQR = () => {
   printWindow.document.write(`
     <html>
       <head>
-        <title>Contaplus QR Code</title>
+        <title>ContaPlus QR Code</title>
         <style>
           body { 
             font-family: Arial, sans-serif; 
