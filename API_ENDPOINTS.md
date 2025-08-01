@@ -13,8 +13,8 @@ El QR code contiene un JSON con la siguiente estructura:
   "companyName": "Mi Empresa",
   "userEmail": "vendedor@empresa.com",
   "endpoints": {
-    "companyInfo": "https://contaplus.app/api/public/company/abc123",
-    "products": "https://contaplus.app/api/public/company/abc123/products"
+    "companyInfo": "https://contaplus-managment.fly.dev/api/public/company/abc123",
+    "products": "https://contaplus-managment.fly.dev/api/public/company/abc123/products"
   }
 }
 ```
@@ -197,7 +197,9 @@ const productsResponse = await fetch(qrData.endpoints.products);
 const products = await productsResponse.json();
 
 // Obtener información de un producto específico
-const productDetail = await fetch(`/api/public/product/${productId}`);
+const productDetail = await fetch(
+  `https://contaplus-managment.fly.dev/api/public/product/${productId}`
+);
 const product = await productDetail.json();
 ```
 
@@ -250,3 +252,23 @@ Para implementar en tu aplicación móvil:
 4. **Mostrar datos**: Presentar la información de manera amigable
 
 Los endpoints están optimizados para uso móvil y devuelven solo la información necesaria para una experiencia de usuario fluida.
+
+## 🌐 URL de Producción
+
+La aplicación está desplegada en: **https://contaplus-managment.fly.dev/**
+
+### Endpoints de Producción:
+
+- **Información de Empresa**: `https://contaplus-managment.fly.dev/api/public/company/{companyId}`
+- **Productos de Empresa**: `https://contaplus-managment.fly.dev/api/public/company/{companyId}/products`
+- **Detalle de Producto**: `https://contaplus-managment.fly.dev/api/public/product/{productId}`
+
+### Ejemplo de Prueba:
+
+```bash
+# Probar endpoint de empresa (reemplaza {companyId} con un ID real)
+curl https://contaplus-managment.fly.dev/api/public/company/{companyId}
+
+# Probar endpoint de productos
+curl https://contaplus-managment.fly.dev/api/public/company/{companyId}/products
+```
