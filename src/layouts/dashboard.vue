@@ -202,6 +202,44 @@
             <p class="text-xs text-slate-500">Marketing campaigns</p>
           </div>
         </NuxtLink>
+
+        <!-- Business Button -->
+        <NuxtLink
+          to="/dashboard/business"
+          :class="[
+            'w-full flex items-center px-6 py-4 text-left transition-all duration-300 group relative',
+            $route.path.includes('/dashboard/business')
+              ? 'bg-blue-50 border-r-4 border-blue-500 text-blue-700 shadow-sm'
+              : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50',
+          ]"
+        >
+          <div
+            :class="[
+              'p-2 rounded-lg mr-4 transition-colors duration-300',
+              $route.path.includes('/dashboard/business')
+                ? 'bg-blue-100 text-blue-600'
+                : 'bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-600',
+            ]"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2H3a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+              ></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <p class="font-semibold">Mi Negocio</p>
+            <p class="text-xs text-slate-500">Business info & QR</p>
+          </div>
+        </NuxtLink>
       </nav>
 
       <!-- Logout Button -->
