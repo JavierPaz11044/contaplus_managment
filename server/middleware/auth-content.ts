@@ -1,17 +1,24 @@
 import { getAuth } from "firebase-admin/auth";
 
 export default defineEventHandler(async (event) => {
-  // Allow registration without auth
-  if (event.node.req.url?.startsWith("/api/auth/register")) {
+  // Allow public endpoints without auth
+  if (
+    event.node.req.url?.startsWith("/api/public/") ||
+    event.node.req.url?.startsWith("/api/auth/register")
+  ) {
+    console.log("🔓 [AUTH] Public endpoint accessed:", event.node.req.url);
     return;
   }
 
+  // Only protect specific API routes
   if (
     !event.node.req.url?.startsWith("/api/user/") &&
     !event.node.req.url?.startsWith("/api/auth/") &&
-    !event.node.req.url?.startsWith("/api/products/")
+    !event.node.req.url?.startsWith("/api/products/") &&
+    !event.node.req.url?.startsWith("/api/locations/") &&
+    !event.node.req.url?.startsWith("/api/promotions/")
   ) {
-    console.log("event.node.req.url", event.node.req.url);
+    console.log("🔓 [AUTH] Non-protected endpoint:", event.node.req.url);
     return;
   }
   const auth = getAuth();

@@ -327,12 +327,19 @@ const qrData = computed(() => {
     return "{}";
   }
 
+  const baseUrl = window.location.origin;
+
   return JSON.stringify(
     {
       companyId: businessInfo.value.company.id,
       userId: businessInfo.value.user.id,
       companyName: businessInfo.value.company.name,
       userEmail: businessInfo.value.user.email,
+      endpoints: {
+        companyInfo: `${baseUrl}/api/public/company/${businessInfo.value.company.id}`,
+        products: `${baseUrl}/api/public/company/${businessInfo.value.company.id}/products`,
+        // Product detail endpoint will be: /api/public/product/{productId}
+      },
     },
     null,
     2
