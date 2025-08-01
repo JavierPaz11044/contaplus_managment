@@ -265,7 +265,6 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
-import QRCode from "qrcode";
 
 // User session
 const { user } = useUserSession();
@@ -336,7 +335,9 @@ const generateQR = async () => {
   if (!qrCanvas.value || !qrData.value) return;
 
   try {
-    await QRCode.toCanvas(qrCanvas.value, qrData.value, {
+    // Dynamic import to avoid SSR issues
+    const QRCode = await import("qrcode");
+    await QRCode.default.toCanvas(qrCanvas.value, qrData.value, {
       width: 192,
       margin: 2,
       color: {
@@ -417,6 +418,9 @@ const printQR = () => {
 
 // Generate QR on mount
 onMounted(() => {
-  generateQR();
+  // Only generate QR on client side
+  if (import.meta.client) {
+    generateQR();
+  }
 });
 </script>
