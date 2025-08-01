@@ -42,18 +42,22 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Get company information
+    // Get company information from seller ID
     let companyInfo = null;
-    if (productData.companyId) {
+    if (productData.sellerId) {
       try {
-        const companyDoc = await db
+        // Find company where this seller is the owner
+        const companiesSnapshot = await db
           .collection("companies")
-          .doc(productData.companyId)
+          .where("ownerId", "==", productData.sellerId)
+          .limit(1)
           .get();
-        if (companyDoc.exists) {
+
+        if (!companiesSnapshot.empty) {
+          const companyDoc = companiesSnapshot.docs[0];
           const companyData = companyDoc.data();
           companyInfo = {
-            id: productData.companyId,
+            id: companyDoc.id,
             name: companyData?.name,
             ruc: companyData?.ruc,
             phone: companyData?.phone,

@@ -91,29 +91,33 @@ export default defineEventHandler(async (event) => {
       },
     };
 
-    // Get basic stats
+    // Get basic stats using seller ID (company owner)
     try {
-      const productsSnapshot = await db
-        .collection("products")
-        .where("companyId", "==", companyId)
-        .get();
+      const sellerId = companyData.ownerId;
 
-      const locationsSnapshot = await db
-        .collection("locations")
-        .where("companyId", "==", companyId)
-        .get();
+      if (sellerId) {
+        const productsSnapshot = await db
+          .collection("products")
+          .where("sellerId", "==", sellerId)
+          .get();
 
-      const promotionsSnapshot = await db
-        .collection("promotions")
-        .where("companyId", "==", companyId)
-        .where("isActive", "==", true)
-        .get();
+        const locationsSnapshot = await db
+          .collection("locations")
+          .where("sellerId", "==", sellerId)
+          .get();
 
-      response.stats = {
-        totalProducts: productsSnapshot.size,
-        totalLocations: locationsSnapshot.size,
-        activePromotions: promotionsSnapshot.size,
-      };
+        const promotionsSnapshot = await db
+          .collection("promotions")
+          .where("sellerId", "==", sellerId)
+          .where("isActive", "==", true)
+          .get();
+
+        response.stats = {
+          totalProducts: productsSnapshot.size,
+          totalLocations: locationsSnapshot.size,
+          activePromotions: promotionsSnapshot.size,
+        };
+      }
     } catch (error) {
       console.log("⚠️ [PUBLIC-COMPANY] Could not fetch stats:", error);
     }

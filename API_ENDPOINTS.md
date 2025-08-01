@@ -233,6 +233,7 @@ const handleQRScan = async (qrData) => {
 - Solo muestran ubicaciones **activas**
 - Solo incluyen promociones **activas**
 - Los datos sensibles del propietario están limitados
+- Los productos se filtran por el **seller ID** del propietario de la empresa
 
 ## 📊 Estadísticas Incluidas
 

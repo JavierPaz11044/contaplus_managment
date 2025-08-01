@@ -35,10 +35,23 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    // Get all products for this company
+    // Get the seller ID for this company
+    const companyData = companyDoc.data();
+    if (!companyData?.ownerId) {
+      console.log("❌ [PUBLIC-PRODUCTS] Company has no owner ID:", companyId);
+      throw createError({
+        statusCode: 404,
+        statusMessage: "Company owner not found",
+      });
+    }
+
+    const sellerId = companyData.ownerId;
+    console.log("👤 [PUBLIC-PRODUCTS] Found seller ID for company:", sellerId);
+
+    // Get all products for this seller (company owner)
     const productsSnapshot = await db
       .collection("products")
-      .where("companyId", "==", companyId)
+      .where("sellerId", "==", sellerId)
       .where("isActive", "==", true)
       .orderBy("createdAt", "desc")
       .get();
